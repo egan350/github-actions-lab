@@ -1,2 +1,2 @@
 def test_division():
-    assert 10 : 2 == 5
+    assert 10 / 2 == 5
