@@ -29,3 +29,19 @@ jobs:
 
       - name: Run tests
         run: python -m pytest
+
+  test:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.get_version.outputs.version }}
+    steps:
+      - name: Set version
+        id: get_version
+        run: echo "version=1.2.3" >> "$GITHUB_OUTPUT"
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show version
+        run: echo "Building version ${{ needs.test.outputs.version }}"
